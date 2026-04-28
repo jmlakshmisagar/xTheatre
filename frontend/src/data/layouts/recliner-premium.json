@@ -1,0 +1,14 @@
+{
+  "id": "recliner-premium-01",
+  "name": "Recliner Premium Cinema",
+  "totalCapacity": 60,
+  "screenPosition": { "x": 0, "y": 0, "z": -38 },
+  "screenSize": { "width": 24, "height": 14 },
+  "curvature": 1.2,
+  "rows": [
+    {"id": "H", "name": "Row H - Recliners", "elevation": 0, "seats": [{"id": "H1", "row": "H", "number": 1, "section": "premium", "price": 600, "position": {"x": -8, "y": 0, "z": 8}}, {"id": "H2", "row": "H", "number": 2, "section": "premium", "price": 600, "position": {"x": -4, "y": 0, "z": 8}}, {"id": "H3", "row": "H", "number": 3, "section": "premium", "price": 700, "position": {"x": 0, "y": 0, "z": 8}}, {"id": "H4", "row": "H", "number": 4, "section": "premium", "price": 600, "position": {"x": 4, "y": 0, "z": 8}}, {"id": "H5", "row": "H", "number": 5, "section": "premium", "price": 600, "position": {"x": 8, "y": 0, "z": 8}}]},
+    {"id": "I", "name": "Row I - Luxury Recliners", "elevation": 3, "seats": [{"id": "I1", "row": "I", "number": 1, "section": "premium", "price": 700, "position": {"x": -8, "y": 3, "z": 0}}, {"id": "I2", "row": "I", "number": 2, "section": "premium", "price": 700, "position": {"x": -4, "y": 3, "z": 0}}, {"id": "I3", "row": "I", "number": 3, "section": "premium", "price": 800, "position": {"x": 0, "y": 3, "z": 0}}, {"id": "I4", "row": "I", "number": 4, "section": "premium", "price": 700, "position": {"x": 4, "y": 3, "z": 0}}, {"id": "I5", "row": "I", "number": 5, "section": "premium", "price": 700, "position": {"x": 8, "y": 3, "z": 0}}]},
+    {"id": "J", "name": "Row J - VIP Recliners", "elevation": 6, "seats": [{"id": "J1", "row": "J", "number": 1, "section": "premium", "price": 800, "position": {"x": -8, "y": 6, "z": -8}}, {"id": "J2", "row": "J", "number": 2, "section": "premium", "price": 800, "position": {"x": -4, "y": 6, "z": -8}}, {"id": "J3", "row": "J", "number": 3, "section": "premium", "price": 900, "position": {"x": 0, "y": 6, "z": -8}}, {"id": "J4", "row": "J", "number": 4, "section": "premium", "price": 800, "position": {"x": 4, "y": 6, "z": -8}}, {"id": "J5", "row": "J", "number": 5, "section": "premium", "price": 800, "position": {"x": 8, "y": 6, "z": -8}}]},
+    {"id": "K", "name": "Row K - VIP Plus", "elevation": 9, "seats": [{"id": "K1", "row": "K", "number": 1, "section": "premium", "price": 900, "position": {"x": -8, "y": 9, "z": -16}}, {"id": "K2", "row": "K", "number": 2, "section": "premium", "price": 900, "position": {"x": -4, "y": 9, "z": -16}}, {"id": "K3", "row": "K", "number": 3, "section": "premium", "price": 1000, "position": {"x": 0, "y": 9, "z": -16}}, {"id": "K4", "row": "K", "number": 4, "section": "premium", "price": 900, "position": {"x": 4, "y": 9, "z": -16}}, {"id": "K5", "row": "K", "number": 5, "section": "premium", "price": 900, "position": {"x": 8, "y": 9, "z": -16}}]}
+  ]
+}

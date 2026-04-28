@@ -1,0 +1,27 @@
+{
+  "name": "xtheatre",
+  "version": "1.0.0",
+  "description": "Virtual IMAX Theatre Experience - Production-grade web application",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "type-check": "cd frontend && npm run type-check && cd ../backend && npm run type-check"
+  },
+  "keywords": [
+    "theatre",
+    "IMAX",
+    "3D",
+    "seat-booking",
+    "webgl",
+    "real-time"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "pvr-standard-01",
+  "name": "PVR Standard Cinema",
+  "totalCapacity": 180,
+  "screenPosition": { "x": 0, "y": 0, "z": -35 },
+  "screenSize": { "width": 22, "height": 13 },
+  "curvature": 1.0,
+  "rows": [
+    {"id": "E", "name": "Row E - Front", "elevation": 0, "seats": [{"id": "E1", "row": "E", "number": 1, "section": "front", "price": 150, "position": {"x": -10, "y": 0, "z": 12}}, {"id": "E2", "row": "E", "number": 2, "section": "front", "price": 150, "position": {"x": -6, "y": 0, "z": 12}}, {"id": "E3", "row": "E", "number": 3, "section": "front", "price": 150, "position": {"x": -2, "y": 0, "z": 12}}, {"id": "E4", "row": "E", "number": 4, "section": "front", "price": 150, "position": {"x": 2, "y": 0, "z": 12}}, {"id": "E5", "row": "E", "number": 5, "section": "front", "price": 150, "position": {"x": 6, "y": 0, "z": 12}}, {"id": "E6", "row": "E", "number": 6, "section": "front", "price": 150, "position": {"x": 10, "y": 0, "z": 12}}]},
+    {"id": "F", "name": "Row F - Mid", "elevation": 1.8, "seats": [{"id": "F1", "row": "F", "number": 1, "section": "standard", "price": 200, "position": {"x": -10, "y": 1.8, "z": 5}}, {"id": "F2", "row": "F", "number": 2, "section": "standard", "price": 200, "position": {"x": -6, "y": 1.8, "z": 5}}, {"id": "F3", "row": "F", "number": 3, "section": "standard", "price": 200, "position": {"x": -2, "y": 1.8, "z": 5}}, {"id": "F4", "row": "F", "number": 4, "section": "standard", "price": 200, "position": {"x": 2, "y": 1.8, "z": 5}}, {"id": "F5", "row": "F", "number": 5, "section": "standard", "price": 200, "position": {"x": 6, "y": 1.8, "z": 5}}, {"id": "F6", "row": "F", "number": 6, "section": "standard", "price": 200, "position": {"x": 10, "y": 1.8, "z": 5}}]},
+    {"id": "G", "name": "Row G - Premium", "elevation": 3.6, "seats": [{"id": "G1", "row": "G", "number": 1, "section": "premium", "price": 300, "position": {"x": -10, "y": 3.6, "z": -2}}, {"id": "G2", "row": "G", "number": 2, "section": "premium", "price": 300, "position": {"x": -6, "y": 3.6, "z": -2}}, {"id": "G3", "row": "G", "number": 3, "section": "premium", "price": 350, "position": {"x": -2, "y": 3.6, "z": -2}}, {"id": "G4", "row": "G", "number": 4, "section": "premium", "price": 350, "position": {"x": 2, "y": 3.6, "z": -2}}, {"id": "G5", "row": "G", "number": 5, "section": "premium", "price": 300, "position": {"x": 6, "y": 3.6, "z": -2}}, {"id": "G6", "row": "G", "number": 6, "section": "premium", "price": 300, "position": {"x": 10, "y": 3.6, "z": -2}}]}
+  ]
+}
