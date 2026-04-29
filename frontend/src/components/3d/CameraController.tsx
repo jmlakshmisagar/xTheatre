@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react'
-import { useThree, useFrame } from '@react-three/fiber'
+import { useEffect } from 'react'
+import { useThree } from '@react-three/fiber'
 import { useTheatreStore } from '../../store/theatre'
 import gsap from 'gsap'
 import { Vector3 } from 'three'
@@ -10,35 +10,39 @@ const DEFAULT_TARGET = new Vector3(0, 2, 0)
 export default function CameraController() {
   const { camera } = useThree()
   const selectedSeat = useTheatreStore((state) => state.selectedSeat)
-  const cameraTargetRef = useRef(new Vector3(...DEFAULT_POSITION))
-  const lookAtTargetRef = useRef(new Vector3(...DEFAULT_TARGET))
 
   useEffect(() => {
     if (!selectedSeat) {
-      // Return to default view
-      gsap.to(cameraTargetRef.current, {
+      // Return to default overview
+      gsap.to(camera.position, {
         x: DEFAULT_POSITION.x,
         y: DEFAULT_POSITION.y,
         z: DEFAULT_POSITION.z,
         duration: 1.5,
         ease: 'power2.inOut',
       })
-      gsap.to(lookAtTargetRef.current, {
+      
+      const targetPos = { x: DEFAULT_TARGET.x, y: DEFAULT_TARGET.y, z: DEFAULT_TARGET.z }
+      gsap.to(targetPos, {
         x: DEFAULT_TARGET.x,
         y: DEFAULT_TARGET.y,
         z: DEFAULT_TARGET.z,
         duration: 1.5,
         ease: 'power2.inOut',
+        onUpdate: () => {
+          camera.lookAt(targetPos.x, targetPos.y, targetPos.z)
+        }
       })
     } else {
-      // Move camera to seat position
-      // Position camera at seat with offset for viewing angle
+      // Cinema-style view: Position camera at seat, looking at screen center
       const seatPos = selectedSeat.position
+      
+      // Position camera at seat height (eye level)
       const cameraX = seatPos.x
-      const cameraY = seatPos.y + 1.5 // Eye level above seat
-      const cameraZ = seatPos.z + 3 // Back from seat
+      const cameraY = seatPos.y + 0.3 // Eye level
+      const cameraZ = seatPos.z // At seat position
 
-      gsap.to(cameraTargetRef.current, {
+      gsap.to(camera.position, {
         x: cameraX,
         y: cameraY,
         z: cameraZ,
@@ -46,20 +50,20 @@ export default function CameraController() {
         ease: 'power2.inOut',
       })
 
-      gsap.to(lookAtTargetRef.current, {
+      // Look at screen center (where the video is)
+      const targetPos = { x: 0, y: 3, z: -30 }
+      gsap.to(targetPos, {
         x: 0,
-        y: 1,
-        z: -30, // Screen position
+        y: 3,
+        z: -30,
         duration: 1.5,
         ease: 'power2.inOut',
+        onUpdate: () => {
+          camera.lookAt(targetPos.x, targetPos.y, targetPos.z)
+        }
       })
     }
-  }, [selectedSeat])
-
-  useFrame(() => {
-    camera.position.copy(cameraTargetRef.current)
-    camera.lookAt(lookAtTargetRef.current)
-  })
+  }, [selectedSeat, camera])
 
   return null
 }

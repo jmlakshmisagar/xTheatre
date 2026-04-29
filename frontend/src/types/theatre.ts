@@ -4,7 +4,6 @@ export interface Seat {
   row: string
   number: number
   section: SeatSection
-  status: SeatStatus
   price: number
   position: {
     x: number

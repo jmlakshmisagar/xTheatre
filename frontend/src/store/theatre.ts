@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { TheatreLayout, Seat, SeatStatus } from '../types/theatre'
 import { calculateDynamicPrice, calculateValueScore } from '../utils/pricing'
 
-interface RemoteUser {
+export interface RemoteUser {
   id: string
   color: string
   selectedSeat: string | null

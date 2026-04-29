@@ -1,4 +1,5 @@
-import { useTheatreStore } from '../../store/theatre'
+import { useTheatreStore, RemoteUser } from '../store/theatre'
+import { Seat } from '../types/theatre'
 
 export default function RemoteUserIndicators() {
   const { remoteUsers, getAllSeats } = useTheatreStore()
@@ -12,10 +13,10 @@ export default function RemoteUserIndicators() {
   }
 
   const remoteSeatSelections = Array.from(remoteUsers.values())
-    .filter(user => user.selectedSeat)
-    .map(user => {
+    .filter((user: RemoteUser) => user.selectedSeat)
+    .map((user: RemoteUser) => {
       const allSeats = getAllSeats()
-      const seat = allSeats.find(s => s.id === user.selectedSeat)
+      const seat = allSeats.find((s: Seat) => s.id === user.selectedSeat)
       return { user, seat }
     })
 
@@ -25,7 +26,7 @@ export default function RemoteUserIndicators() {
         Other Users <span className="text-xs text-gray-400">({remoteUsers.size})</span>
       </h3>
       <div className="space-y-2 max-h-32 overflow-y-auto">
-        {remoteSeatSelections.map(({ user, seat }) => (
+        {remoteSeatSelections.map(({ user, seat }: { user: RemoteUser; seat?: Seat }) => (
           <div key={user.id} className="flex items-center gap-2 p-2 bg-white/5 rounded text-xs">
             <div
               className="w-3 h-3 rounded-full flex-shrink-0"

@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import { useThree, useFrame } from '@react-three/fiber'
 
 interface TheatreVideoProps {
   videoUrl?: string
@@ -8,7 +7,6 @@ interface TheatreVideoProps {
 
 export default function TheatreVideo({ videoUrl = '', autoplay = true }: TheatreVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const { scene } = useThree()
 
   useEffect(() => {
     if (!videoRef.current || !videoUrl) return

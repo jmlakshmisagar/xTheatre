@@ -11,21 +11,30 @@ export default function SeatGrid() {
     // Load layout based on currentLayoutId
     const loadLayout = async () => {
       try {
-        let layoutModule
+        let typedLayout: TheatreLayout = layoutData as TheatreLayout
         
-        if (currentLayoutId === 'imax-standard-01') {
-          layoutModule = await import('../../data/layouts/imax-standard.json')
-        } else if (currentLayoutId === 'imax-large-01') {
-          layoutModule = await import('../../data/layouts/imax-large.json')
+        if (currentLayoutId === 'imax-large-01') {
+          try {
+            const layoutModule = await import('../../data/layouts/imax-large.json')
+            typedLayout = (layoutModule as any).default || (layoutModule as unknown) as TheatreLayout
+          } catch {
+            typedLayout = layoutData as TheatreLayout
+          }
         } else if (currentLayoutId === 'pvr-standard-01') {
-          layoutModule = await import('../../data/layouts/pvr-standard.json')
+          try {
+            const layoutModule = await import('../../data/layouts/pvr-standard.json')
+            typedLayout = (layoutModule as any).default || (layoutModule as unknown) as TheatreLayout
+          } catch {
+            typedLayout = layoutData as TheatreLayout
+          }
         } else if (currentLayoutId === 'recliner-premium-01') {
-          layoutModule = await import('../../data/layouts/recliner-premium.json')
-        } else {
-          layoutModule = layoutData
+          try {
+            const layoutModule = await import('../../data/layouts/recliner-premium.json')
+            typedLayout = (layoutModule as any).default || (layoutModule as unknown) as TheatreLayout
+          } catch {
+            typedLayout = layoutData as TheatreLayout
+          }
         }
-
-        const typedLayout = layoutModule.default as TheatreLayout
         typedLayout.rows.forEach(row => {
           row.seats.forEach(seat => {
             ;(seat as any).status = 'available'
