@@ -30,7 +30,6 @@ export default function Seat({ seat, onSelect }: SeatProps) {
 
   useFrame(() => {
     if (meshRef.current) {
-      // Animate scale on hover/select
       let targetScale = 1
       if (hovered && status === 'available') {
         targetScale = 1.2
@@ -49,79 +48,190 @@ export default function Seat({ seat, onSelect }: SeatProps) {
 
   return (
     <group position={[seat.position.x, seat.position.y, seat.position.z]}>
-      {/* Main seat cube */}
+      {/* ===== MAIN SEAT STRUCTURE ===== */}
+      
+      {/* Seat Cushion - Main Sitting Area */}
       <mesh
         ref={meshRef}
         onClick={handleClick}
         onPointerEnter={() => status === 'available' && setHovered(true)}
         onPointerLeave={() => setHovered(false)}
+        position={[0, 0.15, 0]}
         castShadow
         receiveShadow
       >
-        <boxGeometry args={[0.6, 0.4, 0.8]} />
+        <boxGeometry args={[0.55, 0.25, 0.65]} />
         <meshStandardMaterial
           color={STATUS_COLORS[status]}
           emissive={STATUS_EMISSIVE[status]}
           emissiveIntensity={status === 'selected' ? 0.8 : (hovered && status === 'available' ? 0.6 : 0.3)}
-          metalness={0.3}
-          roughness={0.6}
+          metalness={0.2}
+          roughness={0.7}
         />
       </mesh>
 
-      {/* Seat back - higher back for recliner feel */}
-      <mesh position={[0, 0.3, -0.35]} castShadow>
-        <boxGeometry args={[0.6, 0.5, 0.15]} />
+      {/* Backrest - Support for Back */}
+      <mesh position={[0, 0.45, -0.2]} castShadow receiveShadow>
+        <boxGeometry args={[0.55, 0.45, 0.15]} />
         <meshStandardMaterial
           color={STATUS_COLORS[status]}
           emissive={STATUS_EMISSIVE[status]}
           emissiveIntensity={status === 'selected' ? 0.6 : 0.2}
+          metalness={0.15}
+          roughness={0.7}
         />
       </mesh>
 
-      {/* Armrests - left */}
-      <mesh position={[-0.35, 0, -0.1]} castShadow>
-        <boxGeometry args={[0.15, 0.35, 0.5]} />
-        <meshStandardMaterial color="#1a1a1a" />
+      {/* Headrest - Top of Backrest */}
+      <mesh position={[0, 0.8, -0.15]} castShadow>
+        <boxGeometry args={[0.5, 0.15, 0.2]} />
+        <meshStandardMaterial
+          color={STATUS_COLORS[status]}
+          emissive={STATUS_EMISSIVE[status]}
+          emissiveIntensity={status === 'selected' ? 0.5 : 0.15}
+        />
       </mesh>
 
-      {/* Armrests - right */}
-      <mesh position={[0.35, 0, -0.1]} castShadow>
-        <boxGeometry args={[0.15, 0.35, 0.5]} />
-        <meshStandardMaterial color="#1a1a1a" />
+      {/* ===== ARMRESTS ===== */}
+      
+      {/* Left Armrest */}
+      <mesh position={[-0.35, 0.25, 0]} castShadow receiveShadow>
+        <boxGeometry args={[0.1, 0.35, 0.6]} />
+        <meshStandardMaterial color="#1a1a1a" metalness={0.4} roughness={0.6} />
       </mesh>
 
-      {/* Seat legs - front left */}
-      <mesh position={[-0.2, -0.35, 0.3]} castShadow>
-        <boxGeometry args={[0.08, 0.3, 0.08]} />
-        <meshStandardMaterial color="#0a0a0a" />
+      {/* Right Armrest */}
+      <mesh position={[0.35, 0.25, 0]} castShadow receiveShadow>
+        <boxGeometry args={[0.1, 0.35, 0.6]} />
+        <meshStandardMaterial color="#1a1a1a" metalness={0.4} roughness={0.6} />
       </mesh>
 
-      {/* Seat legs - front right */}
-      <mesh position={[0.2, -0.35, 0.3]} castShadow>
-        <boxGeometry args={[0.08, 0.3, 0.08]} />
-        <meshStandardMaterial color="#0a0a0a" />
+      {/* ===== CUP HOLDERS (Left Side) ===== */}
+      
+      {/* Left Cup Holder Outer Ring */}
+      <mesh position={[-0.38, 0.2, -0.15]} castShadow>
+        <cylinderGeometry args={[0.08, 0.08, 0.08, 16]} />
+        <meshStandardMaterial color="#2a2a2a" metalness={0.5} roughness={0.5} />
       </mesh>
 
-      {/* Seat legs - back left */}
-      <mesh position={[-0.2, -0.35, -0.3]} castShadow>
-        <boxGeometry args={[0.08, 0.3, 0.08]} />
-        <meshStandardMaterial color="#0a0a0a" />
+      {/* Left Cup Holder Inner (Visual Depth) */}
+      <mesh position={[-0.38, 0.24, -0.15]}>
+        <cylinderGeometry args={[0.07, 0.07, 0.02, 16]} />
+        <meshStandardMaterial color="#0a0a0a" metalness={0.3} roughness={0.8} />
       </mesh>
 
-      {/* Seat legs - back right */}
-      <mesh position={[0.2, -0.35, -0.3]} castShadow>
-        <boxGeometry args={[0.08, 0.3, 0.08]} />
-        <meshStandardMaterial color="#0a0a0a" />
+      {/* Left Cup Holder Shadow */}
+      <mesh position={[-0.38, 0.19, -0.15]}>
+        <cylinderGeometry args={[0.065, 0.065, 0.01, 16]} />
+        <meshStandardMaterial color="#000000" opacity={0.3} transparent />
       </mesh>
 
-      {/* Selection indicator ring */}
+      {/* ===== CUP HOLDERS (Right Side) ===== */}
+      
+      {/* Right Cup Holder Outer Ring */}
+      <mesh position={[0.38, 0.2, -0.15]} castShadow>
+        <cylinderGeometry args={[0.08, 0.08, 0.08, 16]} />
+        <meshStandardMaterial color="#2a2a2a" metalness={0.5} roughness={0.5} />
+      </mesh>
+
+      {/* Right Cup Holder Inner */}
+      <mesh position={[0.38, 0.24, -0.15]}>
+        <cylinderGeometry args={[0.07, 0.07, 0.02, 16]} />
+        <meshStandardMaterial color="#0a0a0a" metalness={0.3} roughness={0.8} />
+      </mesh>
+
+      {/* Right Cup Holder Shadow */}
+      <mesh position={[0.38, 0.19, -0.15]}>
+        <cylinderGeometry args={[0.065, 0.065, 0.01, 16]} />
+        <meshStandardMaterial color="#000000" opacity={0.3} transparent />
+      </mesh>
+
+      {/* ===== FOOD TRAY (Front Center) ===== */}
+      
+      {/* Food Tray - Flat Surface */}
+      <mesh position={[0, 0.05, 0.3]} castShadow receiveShadow>
+        <boxGeometry args={[0.6, 0.05, 0.35]} />
+        <meshStandardMaterial color="#1a1a1a" metalness={0.6} roughness={0.4} />
+      </mesh>
+
+      {/* Food Tray Compartment 1 (Left) */}
+      <mesh position={[-0.15, 0.08, 0.25]} castShadow>
+        <boxGeometry args={[0.18, 0.06, 0.15]} />
+        <meshStandardMaterial color="#0f0f0f" metalness={0.4} roughness={0.6} />
+      </mesh>
+
+      {/* Food Tray Compartment 2 (Center) */}
+      <mesh position={[0, 0.08, 0.3]} castShadow>
+        <boxGeometry args={[0.18, 0.06, 0.15]} />
+        <meshStandardMaterial color="#0f0f0f" metalness={0.4} roughness={0.6} />
+      </mesh>
+
+      {/* Food Tray Compartment 3 (Right) */}
+      <mesh position={[0.15, 0.08, 0.25]} castShadow>
+        <boxGeometry args={[0.18, 0.06, 0.15]} />
+        <meshStandardMaterial color="#0f0f0f" metalness={0.4} roughness={0.6} />
+      </mesh>
+
+      {/* ===== SUPPORT LEGS ===== */}
+      
+      {/* Front Left Leg */}
+      <mesh position={[-0.2, -0.3, 0.25]} castShadow>
+        <boxGeometry args={[0.08, 0.4, 0.08]} />
+        <meshStandardMaterial color="#0a0a0a" metalness={0.3} roughness={0.8} />
+      </mesh>
+
+      {/* Front Right Leg */}
+      <mesh position={[0.2, -0.3, 0.25]} castShadow>
+        <boxGeometry args={[0.08, 0.4, 0.08]} />
+        <meshStandardMaterial color="#0a0a0a" metalness={0.3} roughness={0.8} />
+      </mesh>
+
+      {/* Back Left Leg */}
+      <mesh position={[-0.2, -0.3, -0.3]} castShadow>
+        <boxGeometry args={[0.08, 0.4, 0.08]} />
+        <meshStandardMaterial color="#0a0a0a" metalness={0.3} roughness={0.8} />
+      </mesh>
+
+      {/* Back Right Leg */}
+      <mesh position={[0.2, -0.3, -0.3]} castShadow>
+        <boxGeometry args={[0.08, 0.4, 0.08]} />
+        <meshStandardMaterial color="#0a0a0a" metalness={0.3} roughness={0.8} />
+      </mesh>
+
+      {/* ===== CROSS BRACES (Structural Support) ===== */}
+      
+      {/* Front Cross Brace */}
+      <mesh position={[0, -0.2, 0.25]} castShadow>
+        <boxGeometry args={[0.5, 0.04, 0.08]} />
+        <meshStandardMaterial color="#1a1a1a" metalness={0.2} roughness={0.8} />
+      </mesh>
+
+      {/* Back Cross Brace */}
+      <mesh position={[0, -0.2, -0.3]} castShadow>
+        <boxGeometry args={[0.5, 0.04, 0.08]} />
+        <meshStandardMaterial color="#1a1a1a" metalness={0.2} roughness={0.8} />
+      </mesh>
+
+      {/* ===== SELECTION INDICATOR ===== */}
       {status === 'selected' && (
-        <mesh position={[0, 0, -0.5]}>
-          <torusGeometry args={[0.5, 0.05, 16, 100]} />
+        <mesh position={[0, 0.15, -0.5]}>
+          <torusGeometry args={[0.4, 0.05, 16, 100]} />
           <meshStandardMaterial
             color="#fbbf24"
             emissive="#f59e0b"
             emissiveIntensity={0.8}
+          />
+        </mesh>
+      )}
+
+      {/* Hover Indicator */}
+      {hovered && status === 'available' && (
+        <mesh position={[0, 0.15, -0.5]}>
+          <torusGeometry args={[0.38, 0.04, 16, 100]} />
+          <meshStandardMaterial
+            color="#4ade80"
+            emissive="#22c55e"
+            emissiveIntensity={0.5}
           />
         </mesh>
       )}

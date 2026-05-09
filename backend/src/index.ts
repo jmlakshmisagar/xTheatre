@@ -7,10 +7,10 @@ import layoutData from './data/layouts/imax-standard.json'
 import { User, BookingRecord, SeatSnapshot } from './types'
 
 const app: Express = express()
-const PORT = process.env.PORT || 3002
+const PORT = process.env.PORT || 3001
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:3000' }))
+app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:3000' }))
 app.use(express.json())
 
 // HTTP Server with Socket.IO

@@ -1,17 +1,15 @@
 import { useRef, useEffect, useState } from 'react'
-import { Mesh, Vector2, VideoTexture, CanvasTexture } from 'three'
+import { Mesh, Vector2, CanvasTexture, LinearFilter } from 'three'
 
 interface ScreenProps {
   width?: number
   height?: number
   curvature?: number
-  videoUrl?: string
 }
 
-export default function Screen({ width = 20, height = 12, curvature = 1.1, videoUrl }: ScreenProps) {
+export default function Screen({ width = 20, height = 12, curvature = 1.1 }: ScreenProps) {
   const meshRef = useRef<Mesh>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [videoTexture, setVideoTexture] = useState<VideoTexture | CanvasTexture | null>(null)
+  const [videoTexture, setVideoTexture] = useState<CanvasTexture | null>(null)
 
   useEffect(() => {
     // Create demo video with canvas (since we can't use external URLs in browser)
@@ -57,7 +55,7 @@ export default function Screen({ width = 20, height = 12, curvature = 1.1, video
     animate()
 
     const texture = new CanvasTexture(canvas)
-    texture.magFilter = 3
+    texture.magFilter = LinearFilter
     setVideoTexture(texture)
 
     return () => {

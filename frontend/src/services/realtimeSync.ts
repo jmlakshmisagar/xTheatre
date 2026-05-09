@@ -2,7 +2,7 @@ import { io, Socket } from 'socket.io-client'
 import { useTheatreStore } from '../store/theatre'
 import { useEffect, useRef } from 'react'
 
-const SOCKET_URL = 'http://localhost:3002'
+const SOCKET_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001'
 
 let socketInstance: Socket | null = null
 
